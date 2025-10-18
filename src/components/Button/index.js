@@ -1,7 +1,6 @@
 import classNames from 'classnames/bind';
 import styles from './Button.module.scss';
 import { Link } from 'react-router-dom';
-import { Children } from 'react';
 
 const cx = classNames.bind(styles);
 
@@ -59,8 +58,8 @@ function Button({
 
     return (
         <Comp className={classes} {...props}>
-            {leftIcon && <span>{leftIcon}</span>}
-            <span>{children}</span>
+            {leftIcon && <span className={cx('icon')}>{leftIcon}</span>}
+            <span className={cx('title')}>{children}</span>
         </Comp>
     );
 }

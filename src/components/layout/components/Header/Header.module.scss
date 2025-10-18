@@ -19,9 +19,6 @@
     width: var(--default-layout-width);
 }
 
-.logo {
-}
-
 .search-result,
 .search {
     width: 361px;
@@ -96,4 +93,11 @@
     &:active {
         background-color: rgba(22, 24, 35, 0.06);
     }
+}
+
+.more-btn {
+    font-size: 2rem;
+    padding: 4px;
+    margin-left: 28px;
+    background-color: transparent;
 }
