@@ -9,7 +9,6 @@ import {
     faSpinner,
     faCircleQuestion,
     faKeyboard,
-    faCloudUpload,
     faUser,
     faCoins,
     faGear,
@@ -25,6 +24,8 @@ import images from '~/assets/images';
 import AccountItem from '~/components/AccountItem';
 import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
+import { UploadIcon } from '~/components/Icons';
+import Image from '~/components/Image';
 
 const cx = classNames.bind(styles);
 
@@ -143,7 +144,7 @@ function Header() {
                         <>
                             <Tippy delay={[0, 200]} content="Upload video">
                                 <button className={cx('action-btn')}>
-                                    <FontAwesomeIcon icon={faCloudUpload} />
+                                    <UploadIcon />
                                 </button>
                             </Tippy>
                         </>
@@ -156,7 +157,7 @@ function Header() {
 
                     <Menu items={currentUser ? USER_MENU : MENU_ITEMS} onChange={handleChange}>
                         {currentUser ? (
-                            <img
+                            <Image
                                 src="https://p77-sign-va.tiktokcdn.com/tos-maliva-avt-0068/7317115603314016262~tplv-tiktokx-cropcenter:1080:1080.jpeg?dr=14579&refresh_token=b28b53d9&x-expires=1760882400&x-signature=vHgC3pQVCqS0pNG7NtbLo4sqI8c%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=my"
                                 className={cx('user-avatar')}
                                 alt="Nguyen Van A"
