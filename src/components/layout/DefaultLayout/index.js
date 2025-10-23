@@ -7,7 +7,7 @@ const cx = classNames.bind(styles);
 
 function DefaultLayout({ children }) {
     return (
-        <div className={cx('wrapper')}>
+        <div className={cx('wrapper')} style={{ height: 2000 }}>
             <Header />
             <div className={cx('container')}>
                 <Sidebar />
