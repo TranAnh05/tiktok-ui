@@ -2,8 +2,9 @@ import { useEffect, useRef, useState } from 'react';
 import HeadlessTippy from '@tippyjs/react/headless';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark, faSpinner } from '@fortawesome/free-solid-svg-icons';
-
 import classNames from 'classnames/bind';
+
+import * as searchService from '~/apiServices/searchService';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
 import styles from './Search.module.scss';
@@ -28,16 +29,55 @@ function Search() {
             return;
         }
 
-        setLoading(true);
-        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debouncedValue)}&type=less`)
-            .then((res) => res.json())
-            .then((res) => {
-                setSearchResult(res.data);
-                setLoading(false);
-            })
-            .catch(() => {
-                setLoading(false);
-            });
+        // start here (solution 1)
+        // setLoading(true);
+        // request
+        //     .get(`users/search`, {
+        //         params: {
+        //             q: debouncedValue,
+        //             type: 'less',
+        //         },
+        //     })
+        //     .then((res) => {
+        //         setSearchResult(res.data);
+        //         setLoading(false);
+        //     })
+        //     .catch(() => {
+        //         setLoading(false);
+        //     });
+        // End here
+
+        // Code theo dang async await (solution 2)
+        // setLoading(true);
+        // const fetchApi = async () => {
+        //     try {
+        //         const res = await request.get('users/search', {
+        //             params: {
+        //                 q: debouncedValue,
+        //                 type: 'less',
+        //             },
+        //         });
+        //         setSearchResult(res.data);
+        //         setLoading(false);
+        //     } catch (error) {
+        //         setLoading(false);
+        //     }
+        // };
+        // fetchApi();
+        // End here
+
+        // start here (solution 3)
+        const fetchApi = async () => {
+            setLoading(true);
+
+            const result = await searchService.search(debouncedValue);
+            setSearchResult(result);
+
+            setLoading(false);
+        };
+
+        fetchApi();
+        // end here
     }, [debouncedValue]);
 
     const handleClear = () => {
